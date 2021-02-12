@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--用以下格式定义订单
+        Define the order in the following format-->
+
+<!DOCTYPE source [
+        <!ELEMENT source (order+) >
+        <!ELEMENT order (DNI,WaitTime,directory) >
+        <!ELEMENT DNI (#PCDATA) >
+        <!ELEMENT WaitTime (#PCDATA) >
+        <!ELEMENT directory (content+) >
+        <!ELEMENT content (level) >
+        <!ELEMENT level (#PCDATA) >
+        <!ATTLIST order id CDATA #REQUIRED>
+        <!ATTLIST content id CDATA #REQUIRED>
+        ]>
+
+<source>
+
+    <order id="0">
+        <DNI>0.4</DNI>
+        <WaitTime>0</WaitTime>
+        <directory>
+            <content id="0">
+                <level>2</level>
+            </content>
+        </directory>
+    </order>
+
+    <order id="1">
+        <DNI>0.6</DNI>
+        <WaitTime>60</WaitTime>
+        <directory>
+            <content id="0">
+                <level>1</level>
+            </content>
+            <content id="1">
+                <level>2</level>
+            </content>
+            <content id="2">
+                <level>2</level>
+            </content>
+        </directory>
+    </order>
+
+    <order id="2">
+        <DNI>0.7</DNI>
+        <WaitTime>120</WaitTime>
+        <directory>
+            <content id="0">
+                <level>1</level>
+            </content>
+            <content id="1">
+                <level>2</level>
+            </content>
+        </directory>
+    </order>
+
+    <order id="3">
+        <DNI>0.6</DNI>
+        <WaitTime>150</WaitTime>
+        <directory>
+            <content id="0">
+                <level>1</level>
+            </content>
+            <content id="1">
+                <level>2</level>
+            </content>
+        </directory>
+    </order>
+
+    <order id="4">
+        <DNI>0.6</DNI>
+        <WaitTime>180</WaitTime>
+        <directory>
+            <content id="0">
+                <level>2</level>
+            </content>
+        </directory>
+    </order>
+
+    <order id="5">
+        <DNI>0.5</DNI>
+        <WaitTime>200</WaitTime>
+        <directory>
+            <content id="0">
+                <level>2</level>
+            </content>
+        </directory>
+    </order>
+
+</source>

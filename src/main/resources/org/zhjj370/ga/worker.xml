@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--用以下格式定义订单
+        Define the order in the following format-->
+
+<!DOCTYPE source [
+        <!ELEMENT source (order+) >
+        <!ELEMENT order (level,needTime) >
+        <!ELEMENT level (#PCDATA) >
+        <!ELEMENT needTime (#PCDATA) >
+
+        <!ATTLIST order id CDATA #REQUIRED>
+        ]>
+
+<source>
+
+    <order id="0">
+        <level>1</level>
+        <needTime>0</needTime>
+    </order>
+
+    <order id="1">
+        <level>1</level>
+        <needTime>0</needTime>
+    </order>
+
+    <order id="2">
+        <level>1</level>
+        <needTime>180</needTime>
+    </order>
+
+    <order id="3">
+        <level>1</level>
+        <needTime>250</needTime>
+    </order>
+
+    <order id="4">
+        <level>2</level>
+        <needTime>0</needTime>
+    </order>
+
+    <order id="5">
+        <level>2</level>
+        <needTime>0</needTime>
+    </order>
+
+    <order id="6">
+        <level>2</level>
+        <needTime>0</needTime>
+    </order>
+
+    <order id="7">
+        <level>2</level>
+        <needTime>0</needTime>
+    </order>
+
+    <order id="8">
+        <level>2</level>
+        <needTime>180</needTime>
+    </order>
+
+    <order id="9">
+        <level>2</level>
+        <needTime>250</needTime>
+    </order>
+
+    <order id="10">
+        <level>2</level>
+        <needTime>250</needTime>
+    </order>
+
+</source>
