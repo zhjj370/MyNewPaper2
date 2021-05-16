@@ -7,6 +7,7 @@ public class EleTask {
     private double wT;//对应任务已经等待时间
     private double wT_Normalized = 0.0;
     private int aMatch=-1;//是否配对成功
+    private double totalAbilityValue = 0.0;//能力值总数
     private int needT;//还需多长时间
     private double dNI_wT;
 
@@ -25,6 +26,7 @@ public class EleTask {
     public void reset(){
         this.aMatch = -1;
         this.needT = 0;
+        this.totalAbilityValue = 0.0;
     }
 
     public double getdNI_wT() {
@@ -63,8 +65,17 @@ public class EleTask {
         return needT;
     }
 
+
     public void setaMatch(int aMatch) {
         this.aMatch = aMatch;
+    }
+
+    public void congestW(double w){
+        this.totalAbilityValue = this.totalAbilityValue+w;
+    }
+
+    public double getTotalAbilityValue() {
+        return totalAbilityValue;
     }
 
     public void setNeedT(int needT) {

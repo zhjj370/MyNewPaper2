@@ -42,6 +42,8 @@ public class GARorPaper {
     private long tp;
 
 
+
+
     public List<Double> getAverageFitnessList() {
         return averageFitnessList;
     }
@@ -88,6 +90,7 @@ public class GARorPaper {
             mutation();
             xprint();
         }
+
     }
 
     /**
@@ -187,7 +190,7 @@ public class GARorPaper {
 
     /**
      * @return
-     * Email: tyhj_sf@163.com
+     * Email: zhjj370@nuaa.edu.cn
      * @Description: 轮盘赌法选择可以遗传下一代的染色体
      */
     private ChromosomeForPaper getParentChromosome (){

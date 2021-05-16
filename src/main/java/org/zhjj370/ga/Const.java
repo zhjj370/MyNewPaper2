@@ -40,11 +40,11 @@ public class Const {
     private final double _a = 0.7; //交货期临近指数的系数
     private final double _b = 0.3; //已经等待时间的系数
 
-    private final int _multiple_x = 1; //改变规模，worker的倍数
-    private final int _multiple_y = 1; //改变规模，task的倍数
+    private final int _multiple_x = 20; //改变规模，worker的倍数 目前测试：1-20
+    private final int _multiple_y = 20; //改变规模，task的倍数 目前测试：1-20
 
-    private final int _popSize = 30; // 种群规模
-    private final int _maxIterNum = 100;// 最大迭代次数
+    private final int _popSize = 130; // 种群规模
+    private final int _maxIterNum = 1000;// 最大迭代次数
     private final double _mutationRate = 0.01;//基因变异的概率
     private final int _maxMutationNum = 3;//最大变异步长
 
@@ -230,7 +230,19 @@ public class Const {
     }
 
     /**
-     * 计算当前任务的总价值
+     * 输出任务的累积能力值
+     */
+    public void outAbilityValue(){
+        Iterator<EleTask> eleTaskIterator = eleTaskList.iterator();
+        while (eleTaskIterator.hasNext()){
+            double a = eleTaskIterator.next().getTotalAbilityValue();
+            System.out.println("AbilityValue= " + a);
+        }
+    }
+
+
+    /**
+     * 计算当前任务的总价值  各项累加（每项工人累积能力值*工人本身价值）
      * @return
      */
     public double calculateTaskValue(){
@@ -239,6 +251,7 @@ public class Const {
         while (eleTaskIterator.hasNext()){
             EleTask eleTask = eleTaskIterator.next(); //任务
             double x = eleTask.getdNI_wT(); //案例中的分母
+            double z = eleTask.getTotalAbilityValue();//得到该任务的能力值累积
             double y = 0;//分子
             if(eleTask.getaMatch() == -1){
                 y=0; //任务并未凑够人数
@@ -258,7 +271,7 @@ public class Const {
                     y = 0.5;
                 }
             }
-            value += y/x;
+            value += y/x*z;
         }
         return value;
     }

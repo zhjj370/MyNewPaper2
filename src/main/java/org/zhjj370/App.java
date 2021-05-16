@@ -20,9 +20,11 @@ public class App
         int positionLength = c.getElePositionlist().size();
         GARorPaper ga= new GARorPaper(workerLength,positionLength,c.get_popSize(),c.get_maxIterNum(),c.get_mutationRate(),c.get_maxMutationNum());
         //ga.setDdWindow(new DynamicDataWindow("Worker-Match-Task"));
+
         long startTime=System.currentTimeMillis();   //获取开始时间
         ga.caculte();
-        long endTime=System.currentTimeMillis(); //获取结束时间
+        long endTime=System.currentTimeMillis();     //获取结束时间
+
         System.out.println("==========================");
         System.out.println("The running time of the AG： "+(endTime-startTime)+"ms");
         //
@@ -32,5 +34,6 @@ public class App
         //
         ChromosomeForPaper chromosome = ga.getBestChromosome();
         chromosome.getMatch();
+        c.outAbilityValue();
     }
 }

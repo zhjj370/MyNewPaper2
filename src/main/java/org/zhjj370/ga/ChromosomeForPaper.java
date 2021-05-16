@@ -14,6 +14,8 @@ public class ChromosomeForPaper {
     private int[] geneForWorker;//基因序列1-工人排序
     private int[] geneForTask;//基因序列2-任务排序
     private double score;//对应的函数得分
+    private double score1;//
+    private double score2;//
     private static Random rand = new Random();
     private Match match;
 
@@ -31,6 +33,14 @@ public class ChromosomeForPaper {
 
     public void setScore(double score) {
         this.score = score;
+    }
+
+    public double getScore1() {
+        return score1;
+    }
+
+    public double getScore2() {
+        return score2;
     }
 
     public void setGeneForWorkerX(int x, int value){
@@ -76,10 +86,13 @@ public class ChromosomeForPaper {
         Const c = Const.getaConst();
         List<ElePosition> positions = c.getElePositionlist(); //位置列表
         List<EleWorker> workers = c.getEleWorkerList();//工人列表
+        int[][] table = c.get_Table1();
         Match match = new Match(geneForWorker,geneForTask,c.get_Table1());
         double score1 = match.Fitness(); //匹配合适度得分
         int[] position2Worker = match.getPosition2Worker();
+
         //轮询任务表单并计算任务总体价值
+        c.resetTask();
         for(int i=0;i< position2Worker.length;i++){
             if(position2Worker[i] == -1){
                 int idTask = positions.get(i).getIdtask();
@@ -88,16 +101,22 @@ public class ChromosomeForPaper {
             else{
                 int idTask = positions.get(i).getIdtask();
                 int idWorker = position2Worker[i];
+                double w = table[position2Worker[i]][i];
                 c.getEleTaskList().get(idTask).setaMatch(idWorker);//配对的工人
+                c.getEleTaskList().get(idTask).congestW(w);//累积能力值
                 if(workers.get(idWorker).getNeedTime() > c.getEleTaskList().get(idTask).getNeedT()){
                     c.getEleTaskList().get(idTask).setNeedT(workers.get(idWorker).getNeedTime());
                 }
             }
         }
-        //扫描轮询后的任务
+
+        //扫描轮询后的任务 新版本：各项累加(每项任务累积的工人能力值*每项任务本身价值）
         double score2 = c.calculateTaskValue();
         //
-        this.score = score1*score2; //总得分
+        //this.score = score1*score2; //总得分 老版本，新版本score2意义改变
+        this.score = score2;
+        this.score1 = score1; //工人匹配能力值得分
+        this.score2 = score2; //
     }
 
     /**
